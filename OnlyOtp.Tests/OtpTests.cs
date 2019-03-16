@@ -14,6 +14,12 @@ namespace OnlyOtp.Tests
         }
 
         [TestMethod]
+        public void DefaultOtp_Should_NotDependOnAnyProvider()
+        {
+            _otpProvider = new Otp();            
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void OtpStorageShouldNotBeNull()
         {
@@ -40,6 +46,15 @@ namespace OnlyOtp.Tests
                 Assert.IsTrue(char.IsDigit(test));
             }
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GenerateAndStoreOtp_Should_ThrowArgumetNullException_When_NoOtpStorageIsPassed()
+        {
+            _otpProvider = new Otp();
+            (string testOtp, string token) = _otpProvider.GenerateAndStoreOtp();            
+        }
+
         [TestMethod]
         public void GenerateAndStoreOtp_Should_Return6DigitNumericOtpAndNotNullToken_When_NoOptionsArePassed()
         {
@@ -49,6 +64,14 @@ namespace OnlyOtp.Tests
             {
                 Assert.IsTrue(char.IsDigit(test));
             }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void IsOtpMatched_Should_ThrowArgumentNullException_When_NoOtpStorageIsPassed()
+        {
+            _otpProvider = new Otp();
+            _otpProvider.IsOtpMached("123", "sdasfasdf");
         }
 
         [TestMethod]

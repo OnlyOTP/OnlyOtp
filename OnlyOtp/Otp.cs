@@ -10,10 +10,9 @@ namespace OnlyOtp
     {
         private readonly IOtpStorage _otpStorage;
         private IRandomProvider _randomProvider;
-        //public Otp()
-        //{
-        //    _otpStorage = new InMemoryOtpStorage();
-        //}
+        public Otp()
+        {            
+        }
         public Otp(IOtpStorage otpStorage)
         {
             if (otpStorage == null)
@@ -37,6 +36,8 @@ namespace OnlyOtp
         public (string Otp, string OtpVerificationToken) GenerateAndStoreOtp(OtpOptions otpOptions)
         {
             var otp = GenerateOtp(otpOptions);
+            if (_otpStorage == null)
+                throw new ArgumentNullException(nameof(_otpStorage), $"No OTP Storage provided for storing OTP");
             var token = _otpStorage.PutOtp(otp);
             return (otp, token);
         }
@@ -53,7 +54,12 @@ namespace OnlyOtp
             {
                 throw new ArgumentNullException(nameof(otpVerificationToken));
             }
-            
+         
+            if(_otpStorage == null)
+            {
+                throw new ArgumentNullException(nameof(_otpStorage), "No OTP Storage provided for retreiving OTP.");
+            }
+
             return otpUnderTest.Equals(_otpStorage.GetOtp(otpVerificationToken));
         }
 
