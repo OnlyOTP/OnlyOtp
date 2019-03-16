@@ -3,3 +3,6 @@
 ## A general purpose, OTP generation, storage, and validation solution. 
 
 TODO: Usage, Installation
+
+### 1. Install Nuget Package.
+Install Nuget Package https://www.nuget.org/packages/OnlyOTP
