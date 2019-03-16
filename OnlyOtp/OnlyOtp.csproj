@@ -1,11 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>OnlyOTP</PackageId>
+    <PackageTags>otp, only otp, onlyotp, random, secure random, cryptographic random</PackageTags>
+    <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>0.1.1</Version>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlyOtp.Storage\OnlyOtp.Storage.Abstractions\OnlyOtp.Storage.Abstractions.csproj" />
   </ItemGroup>
