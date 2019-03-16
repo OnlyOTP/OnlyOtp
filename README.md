@@ -5,7 +5,7 @@
 # An OTP generation, storage, and validation solution. 
 
 ## 1. Install Nuget Package.
-Install Nuget Package https://www.nuget.org/packages/OnlyOTP
+Install Nuget Package [https://www.nuget.org/packages/OnlyOTP](https://www.nuget.org/packages/OnlyOTP)
 
 ## 2. Generate OTP
 
@@ -25,7 +25,7 @@ var otpWithSpecifiedLength = otpProvider.GenerateOtp(new OtpOptions { Length = 1
 
 ## 2. Gerenate OTP and Store In-Memory
 ### 2.1  Install InMemory OTP Storage Nuget
-Install Nuget Package https://www.nuget.org/packages/OnlyOtp.Storage.InMemory
+Install Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.InMemory](https://www.nuget.org/packages/OnlyOtp.Storage.InMemory)
 ### 2.2 Instantiate `Otp` with `InMemoryOtpStorage`
 
 ````CSharp
