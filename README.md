@@ -20,7 +20,7 @@ var otp = otpProvider.GenerateOtp();
 ## 1. Generate OTP with specified length
 
 ````CSharp
-otpProvider.GenerateOtp(new OtpOptions { Length = 10 })
+var otpWithSpecifiedLength = otpProvider.GenerateOtp(new OtpOptions { Length = 10 });
 ````
 
 ## 2. Gerenate OTP and Store In-Memory
@@ -29,10 +29,10 @@ Install Nuget Package https://www.nuget.org/packages/OnlyOtp.Storage.InMemory
 ### 2.2 Instantiate `Otp` with `InMemoryOtpStorage`
 
 ````CSharp
-var otpProvieder = new Otp(new InMemoryOtpStorage());
+var otpProvider = new Otp(new InMemoryOtpStorage());
 //returns Otp and OtpVerificationToken
 var otpAndToken = otpProvider.GenerateAndStoreOtp();
 //Check if OTP matched with stored against OtpVerificationToken
-var isMatched = otpProvider.IsOtpMached(otpAndToken.Otp, otpAndToken.OtpVerificationToken)
+var isMatched = otpProvider.IsOtpMached(otpAndToken.Otp, otpAndToken.OtpVerificationToken);
 ````
 ## TODO: BYOP - Bring Your Own Provider
