@@ -1,13 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>OnlyOTP</Authors>
-    <Version>0.1.1</Version>
+    <Version>0.2.0</Version>
     <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
