@@ -11,5 +11,6 @@
   <PropertyGroup>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>
+    <Authors>OnlyOTP</Authors>
   </PropertyGroup>
 </Project>
