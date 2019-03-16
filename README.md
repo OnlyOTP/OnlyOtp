@@ -10,7 +10,7 @@ Install Nuget Package https://www.nuget.org/packages/OnlyOTP
 ## 2. Generate OTP
 
 ````CSharp
-var otpProvieder = new Otp();
+var otpProvider = new Otp();
 //Generates 6 digit OTP by default
 var otp = otpProvider.GenerateOtp();
 ````
