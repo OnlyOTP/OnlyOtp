@@ -4,14 +4,37 @@ namespace OnlyOtp
 {
     public class OtpOptions
     {
-        private OtpContents otpContents;
-        public int Length { get; set; }
-        public bool ShouldBeCryptographicallyStrong { get; set; }
+        private OtpContents _otpContents;
+        private int _length;
+        public int Length
+        {
+            get
+            {
+                return _length <= 0 ? DefaultOtpLength : _length;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Length should be a positive number");
+                }
+
+                if (value > 10)
+                {
+                    throw new ArgumentException("Only 10 digit number are supported");
+                }
+                else
+                {
+                    _length = value;
+                }
+            }
+        }
+        public bool ShouldBeCryptographicallyStrong { get; set; } = DefaultCryptographicOption;
         public OtpContents OtpContents
         {
             get
             {
-                return otpContents;
+                return _otpContents;
             }
 
             set
@@ -20,7 +43,7 @@ namespace OnlyOtp
                 {
                     throw new NotImplementedException();
                 }
-                otpContents = value;
+                _otpContents = value;
             }
         }
 

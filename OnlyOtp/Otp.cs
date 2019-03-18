@@ -1,5 +1,4 @@
-﻿using OnlyOtp.Storage;
-using OnlyOtp.Storage.Abstractions;
+﻿using OnlyOtp.Storage.Abstractions;
 //using OnlyOtp.Storage.InMemory;
 using System;
 using System.Linq;
@@ -11,18 +10,16 @@ namespace OnlyOtp
         private readonly IOtpStorage _otpStorage;
         private IRandomProvider _randomProvider;
         public Otp()
-        {            
+        {
         }
         public Otp(IOtpStorage otpStorage)
         {
-            if (otpStorage == null)
-                throw new ArgumentNullException(nameof(otpStorage));
-            _otpStorage = otpStorage;
+            _otpStorage = otpStorage ?? throw new ArgumentNullException(nameof(otpStorage));
         }
 
         public string GenerateOtp()
         {
-            return GenerateOtp(new OtpOptions { Length = OtpOptions.DefaultOtpLength, ShouldBeCryptographicallyStrong = OtpOptions.DefaultCryptographicOption });
+            return GenerateOtp(new OtpOptions { });
         }
         public string GenerateOtp(OtpOptions otpOptions)
         {
@@ -31,13 +28,16 @@ namespace OnlyOtp
 
         public (string Otp, string OtpVerificationToken) GenerateAndStoreOtp()
         {
-            return GenerateAndStoreOtp(new OtpOptions { Length = OtpOptions.DefaultOtpLength, ShouldBeCryptographicallyStrong = OtpOptions.DefaultCryptographicOption });
+            return GenerateAndStoreOtp(new OtpOptions { });
         }
         public (string Otp, string OtpVerificationToken) GenerateAndStoreOtp(OtpOptions otpOptions)
         {
             var otp = GenerateOtp(otpOptions);
             if (_otpStorage == null)
+            {
                 throw new ArgumentNullException(nameof(_otpStorage), $"No OTP Storage provided for storing OTP");
+            }
+
             var token = _otpStorage.PutOtp(otp);
             return (otp, token);
         }
@@ -54,8 +54,8 @@ namespace OnlyOtp
             {
                 throw new ArgumentNullException(nameof(otpVerificationToken));
             }
-         
-            if(_otpStorage == null)
+
+            if (_otpStorage == null)
             {
                 throw new ArgumentNullException(nameof(_otpStorage), "No OTP Storage provided for retreiving OTP.");
             }
@@ -71,14 +71,14 @@ namespace OnlyOtp
             }
             else
             {
-                _randomProvider = new CryptoRandomProvider();             
+                _randomProvider = new CryptoRandomProvider();
             }
             char[] charset = new char[] { };
             if (otpOptions.OtpContents.HasFlag(OtpContents.Number))
             {
                 charset = Enumerable.Range(0, 9).Select(x => char.Parse(x.ToString())).ToArray();
             }
-            return _randomProvider.GetRandom(otpOptions.Length, charset);            
+            return _randomProvider.GetRandom(otpOptions.Length, charset);
         }
     }
 }
