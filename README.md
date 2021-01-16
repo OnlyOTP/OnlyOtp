@@ -25,14 +25,99 @@ var otpWithSpecifiedLength = otpProvider.GenerateOtp(new OtpOptions { Length = 1
 
 ## 2. Gerenate OTP and Store In-Memory
 ### 2.1  Install InMemory OTP Storage Nuget
-Install Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.InMemory](https://www.nuget.org/packages/OnlyOtp.Storage.InMemory)
+Install additional Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.InMemory](https://www.nuget.org/packages/OnlyOtp.Storage.InMemory)
 ### 2.2 Instantiate `Otp` with `InMemoryOtpStorage`
 
 ````CSharp
-var otpProvider = new Otp(new InMemoryOtpStorage());
-//returns Otp and OtpVerificationToken
-(string myOtp, string myToken) = otpProvider.GenerateAndStoreOtp();
-//Check if OTP matched with stored against OtpVerificationToken
-var isMatched = otpProvider.IsOtpMached(myOtp, myToken);
+public void SomeMethod()
+{
+    // Pass InMemoryOtpStorage to Otp Provider.
+    var otpProvider = new Otp(new InMemoryOtpStorage());
+
+    // Returns OTP and OTP Verification Token
+    // Save this token to retreive generated OTP later
+
+    (string myOtp, string myToken) = otpProvider.GenerateAndStoreOtp();
+}
+public void SomeOtherMethod(string otpEnteredByUser)
+{
+    // Match the stored OTP with OTP entered by user
+    var isMatched = otpProvider.IsOtpMached(otpEnteredByUser, myToken);
+}
 ````
-## TODO: BYOP - Bring Your Own Provider
+## 3. Generate OTP and Store in SQL Server
+
+### 3.1  Install InMemory OTP Storage Nuget
+Install additional Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.SqlServer](https://www.nuget.org/packages/OnlyOtp.Storage.SqlServer)
+### 3.2 Create table and schema
+`SqlServerOtpStorage` uses an `Sql Server` to store OTPs. Use this script to generate necessary table and schema.
+````sql
+GO
+CREATE SCHEMA [OnlyOtp]
+GO
+CREATE TABLE [OnlyOtp].[Otp](
+	[Id] [nvarchar](100) NOT NULL,
+	[Value] [nvarchar](100) NOT NULL,
+ CONSTRAINT [PK_Otp] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)) ON [PRIMARY]
+GO
+
+
+````
+
+### 3.3 Create `DbContext`
+#### 3.3.1 In an `ASP.NET Core` application
+If you're using `ASP.NET Core`, you can use `Dependency Injection` to set-up `DbContext` used by `OnlyOtp`.
+````csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddDbContext<OnlyOtpContext>(options =>
+    {        
+        options.UseSqlServer(@"Data Source=DATABASE_SERVER_NAME;Initial Catalog=DATABASE_NAME;Integrated Security=True;");
+    });
+    ...
+}
+````
+And in `Controller` or any other class, inject this `DbContext`:
+````csharp
+public class HelloController : Controller
+{
+    private readonly OnlyOtpContext _onlyOtpContext;
+
+    public HelloController(OnlyOtpContext onlyOtpContext)
+    {
+        _onlyOtpContext = onlyOtpContext;
+    }
+    
+}
+````
+#### 3.3.2 In any other application
+You can instantiate the `DbContext` manually.
+````csharp
+var options = new DbContextOptionsBuilder<OnlyOtpContext>()
+                .UseSqlServer(@"Data Source=DATABASE_SERVER_NAME;Initial Catalog=DATABASE_NAME;Integrated Security=True;")
+                .Options;
+var dbContext = new OnlyOtpContext(options);
+````
+### 3.4 Use `Otp` with `SqlServerOtpStorage`
+````csharp
+public void SomeMethod()
+{
+    // Pass SqlServerOtpStorage to Otp Provider.
+    var otpProvider = new Otp(new SqlServerOtpStorage(_onlyOtpContext));
+    // Get OTP token and generated OTP
+    (string otp, string token) = otpProvider.GenerateAndStoreOtp();
+    //Save this token to retreive generated OTP later
+    ...
+}
+public void SomeOtherActionMethod(string otpEnteredByUser)
+{
+    ...
+    // Match the stored OTP with OTP entered by user
+    bool isOtpMatched = otpProvider.IsOtpMached(otpEnteredByUser, token);
+    ...
+}
+````
