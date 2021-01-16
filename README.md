@@ -17,16 +17,16 @@ var otp = otpProvider.GenerateOtp();
 
 ## Advanced Options
 
-## 1. Generate OTP with specified length
+## Generate OTP with specified length
 
 ````CSharp
 var otpWithSpecifiedLength = otpProvider.GenerateOtp(new OtpOptions { Length = 10 });
 ````
 
-## 2. Gerenate OTP and Store In-Memory
-### 2.1  Install InMemory OTP Storage Nuget
+## Gerenate OTP and Store In-Memory
+### Install InMemory OTP Storage Nuget
 Install additional Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.InMemory](https://www.nuget.org/packages/OnlyOtp.Storage.InMemory)
-### 2.2 Instantiate `Otp` with `InMemoryOtpStorage`
+### Instantiate `Otp` with `InMemoryOtpStorage`
 
 ````CSharp
 public void SomeMethod()
@@ -45,11 +45,11 @@ public void SomeOtherMethod(string otpEnteredByUser)
     var isMatched = otpProvider.IsOtpMached(otpEnteredByUser, myToken);
 }
 ````
-## 3. Generate OTP and Store in SQL Server
+## Generate OTP and Store in SQL Server
 
-### 3.1  Install InMemory OTP Storage Nuget
+### Install InMemory OTP Storage Nuget
 Install additional Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.SqlServer](https://www.nuget.org/packages/OnlyOtp.Storage.SqlServer)
-### 3.2 Create table and schema
+### Create table and schema
 `SqlServerOtpStorage` uses an `Sql Server` to store OTPs. Use this script to generate necessary table and schema.
 ````sql
 GO
@@ -67,8 +67,8 @@ GO
 
 ````
 
-### 3.3 Create `DbContext`
-#### 3.3.1 In an `ASP.NET Core` application
+### Create `DbContext`
+#### In an `ASP.NET Core` application
 If you're using `ASP.NET Core`, you can use `Dependency Injection` to set-up `DbContext` used by `OnlyOtp`.
 ````csharp
 public void ConfigureServices(IServiceCollection services)
@@ -94,7 +94,7 @@ public class HelloController : Controller
     
 }
 ````
-#### 3.3.2 In any other application
+#### In any other application
 You can instantiate the `DbContext` manually.
 ````csharp
 var options = new DbContextOptionsBuilder<OnlyOtpContext>()
@@ -102,7 +102,7 @@ var options = new DbContextOptionsBuilder<OnlyOtpContext>()
                 .Options;
 var dbContext = new OnlyOtpContext(options);
 ````
-### 3.4 Use `Otp` with `SqlServerOtpStorage`
+### Use `Otp` with `SqlServerOtpStorage`
 ````csharp
 public void SomeMethod()
 {
