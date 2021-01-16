@@ -1,15 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlyOtp", "OnlyOtp\OnlyOtp.csproj", "{896965CF-5047-40B1-A7D7-4F9E98CE77C7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlyOtp.Tests", "OnlyOtp.Tests\OnlyOtp.Tests.csproj", "{23EF88AD-C3CC-42C2-82CC-62F650324D46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlyOtp.Storage.InMemory", "OnlyOtp.Storage\OnlyOtp.Storage.InMemory\OnlyOtp.Storage.InMemory.csproj", "{FB875556-C805-4EC1-A968-BCF7278FBDB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlyOtp.Storage.InMemory", "OnlyOtp.Storage\OnlyOtp.Storage.InMemory\OnlyOtp.Storage.InMemory.csproj", "{FB875556-C805-4EC1-A968-BCF7278FBDB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlyOtp.Storage.Abstractions", "OnlyOtp.Storage\OnlyOtp.Storage.Abstractions\OnlyOtp.Storage.Abstractions.csproj", "{EE33F5BA-ADB2-47C9-B21E-DE2C0DCD1AB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlyOtp.Storage.Abstractions", "OnlyOtp.Storage\OnlyOtp.Storage.Abstractions\OnlyOtp.Storage.Abstractions.csproj", "{EE33F5BA-ADB2-47C9-B21E-DE2C0DCD1AB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlyOtp.Storage.SqlServer", "OnlyOtp.Storage\OnlyOtp.Storage.SqlServer\OnlyOtp.Storage.SqlServer.csproj", "{93963A50-DCE5-46F2-8A64-AF5E847A8445}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{4C03E2D8-F7E0-4D22-8C1E-5B429C7FD21D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{08DCF33C-D0EE-4FAA-983A-5C978E6B4AB7}"
+	ProjectSection(SolutionItems) = preProject
+		E:\Users\satishkyadav\OneDrive\Logos\OnlyOtp\onlyotp.png = E:\Users\satishkyadav\OneDrive\Logos\OnlyOtp\onlyotp.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E63296C-FF48-4FED-9B01-827803BD6C5D}"
+	ProjectSection(SolutionItems) = preProject
+		test.runsettings = test.runsettings
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +47,16 @@ Global
 		{EE33F5BA-ADB2-47C9-B21E-DE2C0DCD1AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE33F5BA-ADB2-47C9-B21E-DE2C0DCD1AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE33F5BA-ADB2-47C9-B21E-DE2C0DCD1AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93963A50-DCE5-46F2-8A64-AF5E847A8445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93963A50-DCE5-46F2-8A64-AF5E847A8445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93963A50-DCE5-46F2-8A64-AF5E847A8445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93963A50-DCE5-46F2-8A64-AF5E847A8445}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{08DCF33C-D0EE-4FAA-983A-5C978E6B4AB7} = {4C03E2D8-F7E0-4D22-8C1E-5B429C7FD21D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80FB1272-E9CA-4D01-8DA5-736554BD96F4}

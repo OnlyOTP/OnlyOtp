@@ -1,17 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Authors>OnlyOTP</Authors>
+    <PackageId>OnlyOtp.Storage.SqlServer</PackageId>
     <Version>0.2.2</Version>
-    <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
-    <!--<PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>-->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <!--<PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>-->
+    <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
+    <Authors>OnlyOTP</Authors>
+    <Description>SQL Server Storage for OnlyOTP</Description>
     <RepositoryUrl>https://github.com/OnlyOTP/OnlyOTP</RepositoryUrl>
-    <Description>InMemory Storage for OnlyOTP</Description>
     <PackageTags>otp, only otp, onlyotp, random, secure random, cryptographic random</PackageTags>
     <PackageIcon>onlyotp.png</PackageIcon>
   </PropertyGroup>
@@ -25,6 +23,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
   </ItemGroup>
 
 </Project>

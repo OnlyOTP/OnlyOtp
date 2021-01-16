@@ -7,14 +7,22 @@
     <PackageTags>otp, only otp, onlyotp, random, secure random, cryptographic random</PackageTags>
     <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
   </PropertyGroup>
   <PropertyGroup>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>
+    <!--<PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>-->
+    <RepositoryUrl>https://github.com/OnlyOTP/OnlyOTP</RepositoryUrl>
+    <PackageIcon>onlyotp.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlyOtp.Storage\OnlyOtp.Storage.Abstractions\OnlyOtp.Storage.Abstractions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Assets\images\onlyotp.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
