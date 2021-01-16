@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{08DCF3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E63296C-FF48-4FED-9B01-827803BD6C5D}"
 	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
 		test.runsettings = test.runsettings
 	EndProjectSection
 EndProject

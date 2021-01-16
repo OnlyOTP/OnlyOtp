@@ -31,8 +31,8 @@ Install Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.InMemory](
 ````CSharp
 var otpProvider = new Otp(new InMemoryOtpStorage());
 //returns Otp and OtpVerificationToken
-var otpAndToken = otpProvider.GenerateAndStoreOtp();
+(string myOtp, string myToken) = otpProvider.GenerateAndStoreOtp();
 //Check if OTP matched with stored against OtpVerificationToken
-var isMatched = otpProvider.IsOtpMached(otpAndToken.Otp, otpAndToken.OtpVerificationToken);
+var isMatched = otpProvider.IsOtpMached(myOtp, myToken);
 ````
 ## TODO: BYOP - Bring Your Own Provider
