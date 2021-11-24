@@ -6,8 +6,8 @@ namespace OnlyOtp.Storage.InMemory
 {
     public class InMemoryOtpStorage : IOtpStorage
     {
-        private static readonly ConcurrentDictionary<Guid, string> _otpStorage = new ConcurrentDictionary<Guid, string>();
-        public string PutOtp(string otp)
+        private static readonly ConcurrentDictionary<Guid, OtpEntry> _otpStorage = new ConcurrentDictionary<Guid, OtpEntry>();
+        public string PutOtp(string otp, DateTime? expiry = null)
         {
             otp = otp?.Trim();
             if (string.IsNullOrEmpty(otp))
@@ -16,7 +16,7 @@ namespace OnlyOtp.Storage.InMemory
             }
 
             var token = Guid.NewGuid();
-            if (_otpStorage.TryAdd(token, otp))
+            if (_otpStorage.TryAdd(token, new OtpEntry { Otp = otp, Expiry = expiry }))
             {
                 return token.ToString();
             }
@@ -26,7 +26,7 @@ namespace OnlyOtp.Storage.InMemory
             }
         }
 
-        public string GetOtp(string otpVerificationToken)
+        public OtpEntry GetOtp(string otpVerificationToken)
         {
             otpVerificationToken = otpVerificationToken?.Trim();
             if (string.IsNullOrEmpty(otpVerificationToken))
@@ -39,7 +39,7 @@ namespace OnlyOtp.Storage.InMemory
                 //throw new ArgumentException($"Invalid {nameof(otpVerificationToken)}");
                 return null;
             }
-            if (!_otpStorage.TryGetValue(token, out string otp))
+            if (!_otpStorage.TryGetValue(token, out OtpEntry otp))
             {
                 //throw new ArgumentException($"No OTP found corresponding to {otpVerificationToken}", nameof(otpVerificationToken));
                 return null;

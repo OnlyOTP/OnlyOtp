@@ -85,7 +85,7 @@ namespace OnlyOtp.Tests.Storage
             var otp = "12345";
             var token = otpStorage.PutOtp(otp);
 
-            var otpUnderTest = otpStorage.GetOtp(token);
+            var otpUnderTest = otpStorage.GetOtp(token)?.Otp;
 
             Assert.AreEqual(otpUnderTest, otp);
         }

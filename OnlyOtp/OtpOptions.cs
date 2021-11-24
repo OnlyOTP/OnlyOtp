@@ -50,5 +50,7 @@ namespace OnlyOtp
         public const int DefaultOtpLength = 6;
         public const bool DefaultCryptographicOption = false;
         public const OtpContents DefaultOtpContents = OtpContents.Number;
+
+        public DateTime? Expiry { get; set; }
     }
 }

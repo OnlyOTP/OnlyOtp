@@ -146,7 +146,7 @@ namespace OnlyOtp.Tests
         public void GenerateOtp_Should_NotReturnOutOfRangeValues_WithoutCrypto()
         {
             var random = new Random();
-            for (int i = 0; i <  (int)Math.Pow(10, 6); i++)
+            for (int i = 0; i < (int)Math.Pow(10, 6); i++)
             {
                 var length = random.Next(1, 10);
                 var otp = _otpProvider.GenerateOtp(new OtpOptions { Length = length });
@@ -161,11 +161,25 @@ namespace OnlyOtp.Tests
             var random = new Random();
             for (int i = 0; i < (int)Math.Pow(10, 6); i++)
             {
-                var length = random.Next(1, 10);                
+                var length = random.Next(1, 10);
                 var otp = _otpProvider.GenerateOtp(new OtpOptions { Length = length, ShouldBeCryptographicallyStrong = true });
                 Assert.IsTrue(otp.Length == length);
             }
 
+        }
+
+        [TestMethod]
+        public void GenerateStoreAndMatching_Should_Fail_WhenOtpIsExpired()
+        {
+            (string otp, string token) = _otpProvider.GenerateAndStoreOtp(new OtpOptions { Expiry = DateTime.Now.AddMinutes(-1) });
+            Assert.IsFalse(_otpProvider.IsOtpMached(otp, token));
+        }
+
+        [TestMethod]
+        public void GenerateStoreAndMatching_Should_Fail_WhenOtpIsNotExpired()
+        {
+            (string otp, string token) = _otpProvider.GenerateAndStoreOtp(new OtpOptions { Expiry = DateTime.Now.AddMinutes(5) });
+            Assert.IsTrue(_otpProvider.IsOtpMached(otp, token));
         }
     }
 }

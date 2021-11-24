@@ -9,7 +9,7 @@ namespace OnlyOtp.Storage.Abstractions
         /// </summary>
         /// <param name="otp"></param>
         /// <returns></returns>
-        string PutOtp(string otp);
-        string GetOtp(string otpVerificationToken);
+        string PutOtp(string otp, DateTime? expiry = null);
+        OtpEntry GetOtp(string otpVerificationToken);
     }
 }

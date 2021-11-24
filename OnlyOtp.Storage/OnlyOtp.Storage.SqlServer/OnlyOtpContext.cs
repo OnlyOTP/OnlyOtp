@@ -12,7 +12,7 @@ namespace OnlyOtp.Storage.SqlServer
         {
 
         }
-        public DbSet<Otp> Otps { get; set; }
+        internal DbSet<Otp> Otps { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

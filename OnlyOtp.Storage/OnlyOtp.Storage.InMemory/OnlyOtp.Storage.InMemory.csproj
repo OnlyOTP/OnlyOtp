@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>OnlyOTP</Authors>
-    <Version>0.2.2</Version>
+    <Version>1.0.0</Version>
     <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
     <!--<PackageIconUrl>https://raw.githubusercontent.com/OnlyOTP/OnlyOtpAssets/master/images/facebook_profile_image.png</PackageIconUrl>-->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

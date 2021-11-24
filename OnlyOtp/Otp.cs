@@ -38,7 +38,7 @@ namespace OnlyOtp
                 throw new ArgumentNullException(nameof(_otpStorage), $"No OTP Storage provided for storing OTP");
             }
 
-            var token = _otpStorage.PutOtp(otp);
+            var token = _otpStorage.PutOtp(otp, otpOptions.Expiry);
             return (otp, token);
         }
         public bool IsOtpMached(string otpUnderTest, string otpVerificationToken)
@@ -59,8 +59,12 @@ namespace OnlyOtp
             {
                 throw new ArgumentNullException(nameof(_otpStorage), "No OTP Storage provided for retreiving OTP.");
             }
-
-            return otpUnderTest.Equals(_otpStorage.GetOtp(otpVerificationToken));
+            var otpEntryFromStorage = _otpStorage.GetOtp(otpVerificationToken);
+            if (otpEntryFromStorage == null)
+                return false;
+            if (otpEntryFromStorage.Expiry != null && otpEntryFromStorage.Expiry.HasValue && otpEntryFromStorage.Expiry.Value < DateTime.Now)
+                return false;
+            return otpUnderTest.Equals(otpEntryFromStorage.Otp);
         }
 
         private string GenerateOtpInternal(OtpOptions otpOptions)
