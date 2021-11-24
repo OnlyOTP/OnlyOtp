@@ -26,6 +26,6 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --version-suffix "ci-${{ github.run_number }}"
     - name: Push
-      run: dotnet nuget push "**/*.nupkg" -s https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
+      run: dotnet nuget push "**/*.nupkg" -s https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN} --skip-duplicate
       env:
         GITHUB_TOKEN: ${{ secrets.NUGET_KEY }}
