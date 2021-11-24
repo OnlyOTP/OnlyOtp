@@ -24,8 +24,8 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
     - name: Pack
-      run: dotnet pack --configuration Release
+      run: dotnet pack --configuration Release --version-suffix "ci-${{ github.run_number }}"
     - name: Push
-      run: dotnet nuget push "**/*.nupkg" --version-suffix "ci-${{ github.run_number }}" -s https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
+      run: dotnet nuget push "**/*.nupkg" -s https://api.nuget.org/v3/index.json --api-key ${GITHUB_TOKEN}
       env:
         GITHUB_TOKEN: ${{ secrets.NUGET_KEY }}
