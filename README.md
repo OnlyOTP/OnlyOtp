@@ -58,6 +58,7 @@ GO
 CREATE TABLE [OnlyOtp].[Otp](
 	[Id] [nvarchar](100) NOT NULL,
 	[Value] [nvarchar](100) NOT NULL,
+	[Expiry] [datetime2] NULL
  CONSTRAINT [PK_Otp] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -109,7 +110,11 @@ public void SomeMethod()
     // Pass SqlServerOtpStorage to Otp Provider.
     var otpProvider = new Otp(new SqlServerOtpStorage(_onlyOtpContext));
     // Get OTP token and generated OTP
-    (string otp, string token) = otpProvider.GenerateAndStoreOtp();
+    (string otp, string token) = otpProvider.GenerateAndStoreOtp(new OtpOptions
+            {
+                Length = 6,
+                Expiry = DateTime.Now.AddMinutes(validityInMinutes)
+            });
     //Save this token to retreive generated OTP later
     ...
 }
