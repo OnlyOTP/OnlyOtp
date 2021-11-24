@@ -47,7 +47,7 @@ public void SomeOtherMethod(string otpEnteredByUser)
 ````
 ## Generate OTP and Store in SQL Server
 
-### Install InMemory OTP Storage Nuget
+### Install SQL Server OTP Storage Nuget
 Install additional Nuget Package [https://www.nuget.org/packages/OnlyOtp.Storage.SqlServer](https://www.nuget.org/packages/OnlyOtp.Storage.SqlServer)
 ### Create table and schema
 `SqlServerOtpStorage` uses an `Sql Server` to store OTPs. Use this script to generate necessary table and schema.
