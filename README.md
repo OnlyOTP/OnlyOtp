@@ -137,4 +137,6 @@ var otpProvider = new Otp(otpStorage);
 
 //Once you're done with the OTP verification and want to clean up
 otpStorage.Remove(myToken);
+//OR
+otpProvider.Remove(myToken);
 ````
