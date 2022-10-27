@@ -7,7 +7,7 @@ namespace OnlyOtp.Tests
     [TestClass]
     public class OtpTests
     {
-        private Otp _otpProvider;
+        private IOtp _otpProvider;
         public OtpTests()
         {
             _otpProvider = new Otp(new InMemoryOtpStorage());
@@ -180,6 +180,16 @@ namespace OnlyOtp.Tests
         {
             (string otp, string token) = _otpProvider.GenerateAndStoreOtp(new OtpOptions { Expiry = DateTime.Now.AddMinutes(5) });
             Assert.IsTrue(_otpProvider.IsOtpMached(otp, token));
+        }
+
+        [TestMethod]
+        public void Remove_Should_RemoveOtp_When_Called()
+        {
+            (string Otp, string OtpVerificationToken) = _otpProvider.GenerateAndStoreOtp();
+            _otpProvider.IsOtpMached(Otp, OtpVerificationToken);
+            Assert.IsTrue(_otpProvider.IsOtpMached(Otp, OtpVerificationToken));
+            _otpProvider.Remove(OtpVerificationToken);
+            Assert.IsFalse(_otpProvider.IsOtpMached(Otp, OtpVerificationToken));
         }
     }
 }

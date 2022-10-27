@@ -1,5 +1,4 @@
 ﻿using OnlyOtp.Storage.Abstractions;
-//using OnlyOtp.Storage.InMemory;
 using System;
 using System.Linq;
 
@@ -83,6 +82,11 @@ namespace OnlyOtp
                 charset = Enumerable.Range(0, 9).Select(x => char.Parse(x.ToString())).ToArray();
             }
             return _randomProvider.GetRandom(otpOptions.Length, charset);
+        }
+
+        public void Remove(string OtpVerificationToken)
+        {
+            _otpStorage.Remove(OtpVerificationToken);
         }
     }
 }
