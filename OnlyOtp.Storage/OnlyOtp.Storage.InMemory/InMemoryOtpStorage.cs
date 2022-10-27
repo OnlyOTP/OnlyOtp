@@ -47,5 +47,15 @@ namespace OnlyOtp.Storage.InMemory
             return otp;
         }
 
+        public void Clear()
+        {
+            _otpStorage.Clear();
+        }
+
+        public void Remove(string otpVerificationToken)
+        {
+            var otpVerificationTokenGuid = Guid.Parse(otpVerificationToken);
+            _otpStorage.TryRemove(otpVerificationTokenGuid, out _);
+        }
     }
 }
