@@ -11,5 +11,10 @@ namespace OnlyOtp.Storage.Abstractions
         /// <returns></returns>
         string PutOtp(string otp, DateTime? expiry = null);
         OtpEntry GetOtp(string otpVerificationToken);
+        /// <summary>
+        /// Clears the storage
+        /// </summary>
+        void Clear();
+        void Remove(string otpVerificationToken);
     }
 }

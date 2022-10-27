@@ -43,5 +43,15 @@ namespace OnlyOtp.Storage.SqlServer
             _context.SaveChanges();
             return token;
         }
+        public void Clear()
+        {
+            throw new NotImplementedException("Removing all OTPs is not supported yet. Please remove a single OTP using Remove method.");
+        }
+
+        public void Remove(string otpVerificationToken)
+        {
+            _context.Otps.Remove(_context.Otps.Find(otpVerificationToken));
+            _context.SaveChanges();
+        }
     }
 }

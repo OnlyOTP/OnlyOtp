@@ -7,7 +7,7 @@
     <PackageTags>otp, only otp, onlyotp, random, secure random, cryptographic random</PackageTags>
     <PackageProjectUrl>https://onlyotp.github.io/OnlyOTP/</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
   <PropertyGroup>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
