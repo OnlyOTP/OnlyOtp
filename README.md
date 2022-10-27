@@ -126,3 +126,15 @@ public void SomeOtherActionMethod(string otpEnteredByUser)
     ...
 }
 ````
+
+### Delete OTP from Storage
+Use `Remove` method to remove OTP from storage if you no longer need the OTP.
+
+````csharp
+var otpStorage = new InMemoryOtpStorage();
+var otpProvider = new Otp(otpStorage);
+(string myOtp, string myToken) = otpProvider.GenerateAndStoreOtp();
+
+//Once you're done with the OTP verification and want to clean up
+otpStorage.Remove(myToken);
+````
